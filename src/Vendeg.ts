@@ -1,6 +1,6 @@
-export default class Vendegek {
+export default class Vendeg {
     #vendegAzonosito: number;
-    #furdoAzonosito: number;
+    #reszlegAzonosito: number;
     #belépett: number;
     #ora: number;
     #perc: number;
@@ -9,7 +9,7 @@ export default class Vendegek {
     constructor(sor: string) {
         const m: string[] = sor.split(" ");
         this.#vendegAzonosito = parseInt(m[0]);
-        this.#furdoAzonosito = parseInt(m[1]);
+        this.#reszlegAzonosito = parseInt(m[1]);
         this.#belépett = parseInt(m[2]);
         this.#ora = parseInt(m[3]);
         this.#perc = parseInt(m[4]);

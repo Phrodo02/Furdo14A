@@ -1,8 +1,8 @@
-import Vendegek from "./Vendegek";
+import Vendeg from "./Vendeg";
 import fs from "fs";
 
 export default class Megoldas {
-    #vendegek: Vendegek[] = [];
+    #vendegek: Vendeg[] = [];
 
     constructor(forrás: string) {
         fs.readFileSync(forrás)
@@ -10,7 +10,7 @@ export default class Megoldas {
             .split("\n")
             .forEach(i => {
                 const aktSor: string = i.trim();
-                this.#vendegek.push(new Vendegek(aktSor));
+                this.#vendegek.push(new Vendeg(aktSor));
             });
     }
 }
