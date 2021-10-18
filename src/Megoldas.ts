@@ -10,6 +10,7 @@ export default class Megoldas {
             .split("\n")
             .forEach(i => {
                 const aktSor: string = i.trim();
+                console.log(aktSor);
                 this.#vendegek.push(new Vendeg(aktSor));
             });
     }
