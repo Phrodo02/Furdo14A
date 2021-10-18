@@ -2,6 +2,7 @@
 import http from "http"; //  https://nodejs.org/docs/latest-v14.x/api/http.html
 import url from "url"; //  https://nodejs.org/docs/latest-v14.x/api/url.html
 import Megoldas from "./Megoldas";
+import Vendeg from "./Vendeg";
 
 export default class Content {
     public static content(req: http.IncomingMessage, res: http.ServerResponse): void {
@@ -36,6 +37,10 @@ export default class Content {
             res.end();
             return;
         }
+
+        res.write("2. feladat\n");
+        res.write(`Az első vendég ${megoldas.ElsoKilepo}-kor lépett ki az öltözőből.\n`);
+        res.write(`Az utolsó vendég ${megoldas.UtolsoKilepo}-kor lépett ki az öltözőből.\n`);
         // <---- Fejezd be a kódolást
 
         res.write("</pre></form></body></html>");
