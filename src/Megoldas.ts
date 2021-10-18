@@ -33,6 +33,18 @@ export default class Megoldas {
         return egyReszlegesVendeg;
     }
 
+    public intervallumKözöttLátogatók(kezdes: number, vege: number): number {
+        let szamlalo = 0;
+        let tmpVendegekAzon = [];
+        for (const vendeg of this.#vendegek) {
+            if (vendeg.Ora >= kezdes && vendeg.Ora < vege && vendeg.ReszlegAzonosito == 0 && vendeg.Belepett == 1) {
+                tmpVendegekAzon.push(vendeg.VendegAzon);
+                szamlalo++;
+            }
+        }
+        return szamlalo;
+    }
+
     public get ElsoKilepo(): string {
         let Min = 240001;
         for (const vendeg of this.#vendegek) {
