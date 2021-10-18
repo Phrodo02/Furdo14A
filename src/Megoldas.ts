@@ -10,9 +10,27 @@ export default class Megoldas {
             .split("\n")
             .forEach(i => {
                 const aktSor: string = i.trim();
-                console.log(aktSor);
                 this.#vendegek.push(new Vendeg(aktSor));
             });
+    }
+
+    public get vendegRészlegLista(): number {
+        let tmpAzon = 0;
+        let szamlalo = 0;
+        let egyReszlegesVendeg = 0;
+        for (const vendeg of this.#vendegek) {
+            if (tmpAzon == vendeg.VendegAzon) {
+                szamlalo++;
+            } else {
+                if (szamlalo == 4) {
+                    szamlalo = 0;
+                    egyReszlegesVendeg++;
+                } else szamlalo = 0;
+                tmpAzon = vendeg.VendegAzon;
+                szamlalo++;
+            }
+        }
+        return egyReszlegesVendeg;
     }
 
     public get ElsoKilepo(): string {
