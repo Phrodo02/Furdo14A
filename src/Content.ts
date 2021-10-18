@@ -41,6 +41,9 @@ export default class Content {
         res.write("2. feladat\n");
         res.write(`Az első vendég ${megoldas.ElsoKilepo}-kor lépett ki az öltözőből.\n`);
         res.write(`Az utolsó vendég ${megoldas.UtolsoKilepo}-kor lépett ki az öltözőből.\n`);
+
+        res.write("3. feladat\n");
+        res.write(`A fürdőben ${megoldas.vendegRészlegLista} vendég járt csak egy részlegen.\n`);
         // <---- Fejezd be a kódolást
 
         res.write("</pre></form></body></html>");

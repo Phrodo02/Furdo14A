@@ -16,6 +16,10 @@ export default class Vendeg {
         this.#masodperc = parseInt(m[5]);
     }
 
+    public get VendegAzon(): number {
+        return this.#vendegAzonosito;
+    }
+
     public get Ora(): number {
         return this.#ora;
     }
