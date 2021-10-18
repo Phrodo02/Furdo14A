@@ -26,7 +26,16 @@ export default class Content {
         const params = new url.URL(req.url as string, `http://${req.headers.host}/`).searchParams;
 
         // Kezd a kódolást innen -->
-
+        let megoldas: Megoldas;
+        try {
+            megoldas = new Megoldas("furdoadat.txt");
+        } catch (error) {
+            res.write("Hiba a forrásban!\n");
+            res.write(`Hibaüzenet: ${(error as Error).message}\n`);
+            res.write("</pre></form></body></html>");
+            res.end();
+            return;
+        }
         // <---- Fejezd be a kódolást
 
         res.write("</pre></form></body></html>");
