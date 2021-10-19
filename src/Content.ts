@@ -45,9 +45,16 @@ export default class Content {
         res.write("3. feladat\n");
         res.write(`A fürdőben ${megoldas.vendegRészlegLista} vendég járt csak egy részlegen.\n`);
 
+
         res.write("4. feladat\n");
         res.write("A legtöbb időt eltöltő vendég:\n");
         res.write(`A fürdőben ${megoldas.eltoltottIdo}\n`);
+
+        res.write("5. feladat\n");
+        res.write(`6 - 9 óra között ${megoldas.intervallumKözöttLátogatók(6, 9)} vendég\n`);
+        res.write(`9 - 16 óra között ${megoldas.intervallumKözöttLátogatók(9, 16)} vendég\n`);
+        res.write(`16 - 20 óra között ${megoldas.intervallumKözöttLátogatók(16, 20)} vendég\n`);
+
         // <---- Fejezd be a kódolást
 
         res.write("</pre></form></body></html>");
