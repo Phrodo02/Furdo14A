@@ -41,6 +41,28 @@ export default class Megoldas {
         return `${maxAzon}. vendég ${d.getHours() - 1}:${d.getMinutes()}:${d.getSeconds()}`;
     }
 
+    public get szaunaEltoltottIdo(): string {
+        let ki = 0;
+        let be = 0;
+        let azon = 0;
+        let fajlba = [];
+        for (const vendeg of this.#vendegek) {
+            if (vendeg.ReszlegAzonosito == 2 && vendeg.VendegAzon == azon) {
+                if (vendeg.Belepett != 1) {
+                    be = new Date(2021, 10, 10, vendeg.Ora, vendeg.Perc, vendeg.Masodperc).getTime();
+                } else {
+                    ki = new Date(2021, 10, 10, vendeg.Ora, vendeg.Perc, vendeg.Masodperc).getTime();
+                    const date = (ki - be).toString();
+                    const d = new Date(parseInt(date, 10));
+                    fajlba.push(`${vendeg.VendegAzon} ${d.getHours() - 1 < 10 ? "0" + (d.getHours() - 1) : d.getHours() - 1}:${d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes()}:${d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds()}`);
+                }
+            } else {
+                azon = vendeg.VendegAzon;
+            }
+        }
+        fs.writeFileSync("szauna.txt", fajlba.join("\n"));
+        return "";
+    }
     public get vendegRészlegLista(): number {
         let tmpAzon = 0;
         let szamlalo = 0;
@@ -62,7 +84,7 @@ export default class Megoldas {
 
     public intervallumKözöttLátogatók(kezdes: number, vege: number): number {
         let szamlalo = 0;
-        let tmpVendegekAzon = [];
+        const tmpVendegekAzon = [];
         for (const vendeg of this.#vendegek) {
             if (vendeg.Ora >= kezdes && vendeg.Ora < vege && vendeg.ReszlegAzonosito == 0 && vendeg.Belepett == 1) {
                 tmpVendegekAzon.push(vendeg.VendegAzon);
