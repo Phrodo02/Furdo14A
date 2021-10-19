@@ -41,18 +41,6 @@ export default class Megoldas {
         return `${maxAzon}. vendég ${d.getHours() - 1}:${d.getMinutes()}:${d.getSeconds()}`;
     }
 
-    public get LegghosszabbIdo(): string {
-        const tmpDate = new Date(2021, 10, 10, 12, 15, 3).getTime();
-        const tmpDate2 = new Date(2021, 10, 10, 17, 5, 7).getTime();
-        const date = (tmpDate2 - tmpDate).toString();
-        const d = new Date(parseInt(date, 10));
-        console.log(`${d.getHours() - 1}:${d.getMinutes()}:${d.getSeconds()}`);
-        console.log(tmpDate2);
-        console.log(tmpDate);
-        console.log(tmpDate2 - tmpDate);
-        return "";
-    }
-
     public get vendegRészlegLista(): number {
         let tmpAzon = 0;
         let szamlalo = 0;
