@@ -45,7 +45,7 @@ export default class Megoldas {
         let ki = 0;
         let be = 0;
         let azon = 0;
-        let fajlba = [];
+        const fajlba = [];
         for (const vendeg of this.#vendegek) {
             if (vendeg.ReszlegAzonosito == 2 && vendeg.VendegAzon == azon) {
                 if (vendeg.Belepett != 1) {
@@ -63,6 +63,49 @@ export default class Megoldas {
         fs.writeFileSync("szauna.txt", fajlba.join("\n"));
         return "";
     }
+    public get reszlegHasználat(): string {
+        let uszoda = 0;
+        let szauna = 0;
+        let gyogyviz = 0;
+        let strand = 0;
+        let azon = 0;
+        let v1 = false;
+        let v2 = false;
+        let v3 = false;
+        let v4 = false;
+        for (const vendeg of this.#vendegek) {
+            if (vendeg.VendegAzon == azon) {
+                switch (vendeg.ReszlegAzonosito) {
+                    case 1:
+                        if (!v1) uszoda++;
+                        v1 = true;
+                        break;
+                    case 2:
+                        if (!v2) szauna++;
+                        v2 = true;
+                        break;
+                    case 3:
+                        if (!v3) gyogyviz++;
+                        v3 = true;
+                        break;
+                    case 4:
+                        if (!v4) strand++;
+                        v4 = true;
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                azon = vendeg.VendegAzon;
+                v1 = false;
+                v2 = false;
+                v3 = false;
+                v4 = false;
+            }
+        }
+        return `Uszoda ${uszoda}\nSzaunák: ${szauna}\nGyógyvizes medencék: ${gyogyviz}\nStrand: ${strand}`;
+    }
+
     public get vendegRészlegLista(): number {
         let tmpAzon = 0;
         let szamlalo = 0;
