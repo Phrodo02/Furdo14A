@@ -14,6 +14,45 @@ export default class Megoldas {
             });
     }
 
+    public get eltoltottIdo(): string {
+        let ki = 0;
+        let be = 0;
+        let azon = 0;
+        let max = 0;
+        let maxAzon = 0;
+        for (const vendeg of this.#vendegek) {
+            if (vendeg.ReszlegAzonosito == 0) {
+                if (vendeg.VendegAzon == azon) {
+                    if (vendeg.Belepett != 1) {
+                        ki = new Date(2021, 10, 10, vendeg.Ora, vendeg.Perc, vendeg.Masodperc).getTime();
+                    }
+                    if (ki != 0 && be != 0 && max < ki - be) {
+                        max = ki - be;
+                        maxAzon = vendeg.VendegAzon;
+                    }
+                } else {
+                    be = new Date(2021, 10, 10, vendeg.Ora, vendeg.Perc, vendeg.Masodperc).getTime();
+                    azon = vendeg.VendegAzon;
+                }
+            }
+        }
+        const date = max.toString();
+        const d = new Date(parseInt(date, 10));
+        return `${maxAzon}. vendég ${d.getHours() - 1}:${d.getMinutes()}:${d.getSeconds()}`;
+    }
+
+    public get LegghosszabbIdo(): string {
+        const tmpDate = new Date(2021, 10, 10, 12, 15, 3).getTime();
+        const tmpDate2 = new Date(2021, 10, 10, 17, 5, 7).getTime();
+        const date = (tmpDate2 - tmpDate).toString();
+        const d = new Date(parseInt(date, 10));
+        console.log(`${d.getHours() - 1}:${d.getMinutes()}:${d.getSeconds()}`);
+        console.log(tmpDate2);
+        console.log(tmpDate);
+        console.log(tmpDate2 - tmpDate);
+        return "";
+    }
+
     public get vendegRészlegLista(): number {
         let tmpAzon = 0;
         let szamlalo = 0;

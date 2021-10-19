@@ -44,6 +44,10 @@ export default class Content {
 
         res.write("3. feladat\n");
         res.write(`A fürdőben ${megoldas.vendegRészlegLista} vendég járt csak egy részlegen.\n`);
+
+        res.write("4. feladat\n");
+        res.write("A legtöbb időt eltöltő vendég:\n");
+        res.write(`A fürdőben ${megoldas.eltoltottIdo}\n`);
         // <---- Fejezd be a kódolást
 
         res.write("</pre></form></body></html>");
