@@ -56,6 +56,9 @@ export default class Content {
         res.write(`16 - 20 óra között ${megoldas.intervallumKözöttLátogatók(16, 20)} vendég\n`);
 
         megoldas.szaunaEltoltottIdo;
+
+        res.write("7. feladat\n");
+        res.write(megoldas.reszlegHasználat);
         // <---- Fejezd be a kódolást
 
         res.write("</pre></form></body></html>");
