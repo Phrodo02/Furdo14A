@@ -10,11 +10,11 @@ describe("Megoldas osztály unit tesztek", () => {
         expect(megoldas).toBeInstanceOf(Megoldas);
     });
 
-    it("Eltöltött idó ellenőrzése", () => {
+    it("Eltöltött idő ellenőrzése", () => {
         expect(megoldas.eltoltottIdo).toBe("306. vendég 6:41:19");
     });
 
-    it("Eltöltött idó ellenőrzése 2", () => {
+    it("Eltöltött idő ellenőrzése 2", () => {
         expect(megoldas2.eltoltottIdo).toBe("112. vendég 0:30:48");
     });
 
@@ -24,32 +24,32 @@ describe("Megoldas osztály unit tesztek", () => {
     });
 
     it("Részlegek használatának számai test", () => {
-        expect(megoldas.reszlegHasználat).toBe("Uszoda: 41\nSzaunák: 52\nGyógyvizes medencék: 54\nStrand: 48");
+        expect(megoldas.reszlegHasznalat).toBe("Uszoda: 41\nSzaunák: 52\nGyógyvizes medencék: 54\nStrand: 48");
     });
 
     it("Egy rszleges véndégek tesztelése", () => {
-        expect(megoldas.vendegRészlegLista).toBe(33);
+        expect(megoldas.vendegReszlegLista).toBe(33);
     });
 
     it("Intervallum közti látogatók", () => {
-        expect(megoldas.intervallumKözöttLátogatók(6, 9)).toBe(9);
-        expect(megoldas.intervallumKözöttLátogatók(9, 16)).toBe(45);
-        expect(megoldas.intervallumKözöttLátogatók(16, 20)).toBe(46);
+        expect(megoldas.intervallumKozottLatogatok(6, 9)).toBe(9);
+        expect(megoldas.intervallumKozottLatogatok(9, 16)).toBe(45);
+        expect(megoldas.intervallumKozottLatogatok(16, 20)).toBe(46);
     });
 
     it("Elso látogató", () => {
-        expect(megoldas.ElsoKilepo).toBe("6:14:56");
+        expect(megoldas.elsoKilepo).toBe("6:14:56");
     });
 
     it("Elso látogató 2", () => {
-        expect(megoldas2.ElsoKilepo).toBe("16:15:27");
+        expect(megoldas2.elsoKilepo).toBe("16:15:27");
     });
 
     it("Utolsó látogató", () => {
-        expect(megoldas.UtolsoKilepo).toBe("18:35:37");
+        expect(megoldas.utolsoKilepo).toBe("18:35:37");
     });
 
     it("Utolsó látogató 2", () => {
-        expect(megoldas3.UtolsoKilepo).toBe("6:17:47");
+        expect(megoldas3.utolsoKilepo).toBe("6:17:47");
     });
 });

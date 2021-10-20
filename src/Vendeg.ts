@@ -1,7 +1,7 @@
 export default class Vendeg {
     #vendegAzonosito: number;
     #reszlegAzonosito: number;
-    #belépett: number;
+    #belepett: number;
     #ora: number;
     #perc: number;
     #masodperc: number;
@@ -10,34 +10,34 @@ export default class Vendeg {
         const m: string[] = sor.split(" ");
         this.#vendegAzonosito = parseInt(m[0]);
         this.#reszlegAzonosito = parseInt(m[1]);
-        this.#belépett = parseInt(m[2]);
+        this.#belepett = parseInt(m[2]);
         this.#ora = parseInt(m[3]);
         this.#perc = parseInt(m[4]);
         this.#masodperc = parseInt(m[5]);
     }
 
-    public get VendegAzon(): number {
+    public get vendegAzon(): number {
         return this.#vendegAzonosito;
     }
 
-    public get Ora(): number {
+    public get ora(): number {
         return this.#ora;
     }
 
-    public get Perc(): number {
+    public get perc(): number {
         return this.#perc;
     }
 
-    public get Masodperc(): number {
+    public get masodperc(): number {
         return this.#masodperc;
     }
 
-    public get ReszlegAzonosito(): number {
+    public get reszlegAzon(): number {
         return this.#reszlegAzonosito;
     }
 
-    public get Belepett(): number {
-        return this.#belépett;
+    public get belepett(): number {
+        return this.#belepett;
     }
     public get osszeFuzottOra(): number {
         let tmpPerc: string;
