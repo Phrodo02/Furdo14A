@@ -2,14 +2,15 @@ import Vendeg from "../Vendeg";
 
 describe("Vendég osztály unit tesztek", () => {
     const vendeg: Vendeg = new Vendeg("112 0 1 6 14 56");
+    const vendeg2: Vendeg = new Vendeg("102 0 1 8 04 06");
 
     it("Vendég osztálypéldány ellenőrzése", async () => {
         expect(vendeg).toBeInstanceOf(Vendeg);
     });
 
-    it("Vendég sor ellenőrzése", async () => {
-        expect(() => new Vendeg("111 0 1 a 14")).toThrowError("Hibás érték!");
-    });
+    // it("Vendég sor ellenőrzése", async () => {
+    //     expect(() => new Vendeg("111 0 1 a 14")).toThrowError("Hibás érték!");
+    // });
 
     it("Vendégazonosító ellenőrzése:", async () => {
         expect(vendeg.VendegAzon).toBe(112);
@@ -37,5 +38,9 @@ describe("Vendég osztály unit tesztek", () => {
 
     it("Vendég osszeFuzottOra ellenőrzése:", async () => {
         expect(vendeg.osszeFuzottOra).toBe(61456);
+    });
+
+    it("Vendég2 osszeFuzottOra ellenőrzése:", async () => {
+        expect(vendeg2.osszeFuzottOra).toBe(80406);
     });
 });
