@@ -61,7 +61,8 @@ export default class Megoldas {
             }
         }
         fs.writeFileSync("szauna.txt", fajlba.join("\n"));
-        return "";
+        fs.writeFileSync("szaunaOH.txt", fajlba.join("\n"));
+        return "Sikeres fájlba írás";
     }
     public get reszlegHasználat(): string {
         let uszoda = 0;
@@ -103,7 +104,7 @@ export default class Megoldas {
                 v4 = false;
             }
         }
-        return `Uszoda ${uszoda}\nSzaunák: ${szauna}\nGyógyvizes medencék: ${gyogyviz}\nStrand: ${strand}`;
+        return `Uszoda: ${uszoda}\nSzaunák: ${szauna}\nGyógyvizes medencék: ${gyogyviz}\nStrand: ${strand}`;
     }
 
     public get vendegRészlegLista(): number {
