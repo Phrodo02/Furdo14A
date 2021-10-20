@@ -2,7 +2,6 @@
 import http from "http"; //  https://nodejs.org/docs/latest-v14.x/api/http.html
 import url from "url"; //  https://nodejs.org/docs/latest-v14.x/api/url.html
 import Megoldas from "./Megoldas";
-import Vendeg from "./Vendeg";
 
 export default class Content {
     public static content(req: http.IncomingMessage, res: http.ServerResponse): void {
@@ -42,22 +41,21 @@ export default class Content {
         res.write(`Az első vendég ${megoldas.ElsoKilepo}-kor lépett ki az öltözőből.\n`);
         res.write(`Az utolsó vendég ${megoldas.UtolsoKilepo}-kor lépett ki az öltözőből.\n`);
 
-        res.write("3. feladat\n");
+        res.write("\n3. feladat\n");
         res.write(`A fürdőben ${megoldas.vendegRészlegLista} vendég járt csak egy részlegen.\n`);
 
-
-        res.write("4. feladat\n");
+        res.write("\n4. feladat\n");
         res.write("A legtöbb időt eltöltő vendég:\n");
-        res.write(`A fürdőben ${megoldas.eltoltottIdo}\n`);
+        res.write(`${megoldas.eltoltottIdo}\n`);
 
-        res.write("5. feladat\n");
-        res.write(`6 - 9 óra között ${megoldas.intervallumKözöttLátogatók(6, 9)} vendég\n`);
-        res.write(`9 - 16 óra között ${megoldas.intervallumKözöttLátogatók(9, 16)} vendég\n`);
-        res.write(`16 - 20 óra között ${megoldas.intervallumKözöttLátogatók(16, 20)} vendég\n`);
+        res.write("\n5. feladat\n");
+        res.write(`6-9 óra között ${megoldas.intervallumKözöttLátogatók(6, 9)} vendég\n`);
+        res.write(`9-16 óra között ${megoldas.intervallumKözöttLátogatók(9, 16)} vendég\n`);
+        res.write(`16-20 óra között ${megoldas.intervallumKözöttLátogatók(16, 20)} vendég\n`);
 
         megoldas.szaunaEltoltottIdo;
 
-        res.write("7. feladat\n");
+        res.write("\n7. feladat\n");
         res.write(megoldas.reszlegHasználat);
         // <---- Fejezd be a kódolást
 
