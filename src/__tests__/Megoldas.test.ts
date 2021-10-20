@@ -23,11 +23,6 @@ describe("Megoldas osztály unit tesztek", () => {
         expect(fs.readFileSync("szauna.txt").toString()).toBe(fs.readFileSync("szaunaOH.txt").toString());
     });
 
-    it("szauna.txt tartalmának ellenőrzése 2", () => {
-        expect(megoldas2.szaunaEltoltottIdo).toBe("Sikeres fájlba írás");
-        expect(fs.readFileSync("szauna.txt").toString()).toBe(fs.readFileSync("szaunaOH.txt").toString());
-    });
-
     it("Részlegek használatának számai test", () => {
         expect(megoldas.reszlegHasznalat).toBe("Uszoda: 41\nSzaunák: 52\nGyógyvizes medencék: 54\nStrand: 48");
     });

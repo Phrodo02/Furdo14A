@@ -46,22 +46,28 @@ export default class Megoldas {
         let be = 0;
         let azon = 0;
         const fajlba = [];
+        let osszIdo = 0;
         for (const vendeg of this.#vendegek) {
-            if (vendeg.reszlegAzon == 2 && vendeg.vendegAzon == azon) {
-                if (vendeg.belepett != 1) {
-                    be = new Date(2021, 10, 10, vendeg.ora, vendeg.perc, vendeg.masodperc).getTime();
-                } else {
-                    ki = new Date(2021, 10, 10, vendeg.ora, vendeg.perc, vendeg.masodperc).getTime();
-                    const date = (ki - be).toString();
-                    const d = new Date(parseInt(date, 10));
-                    fajlba.push(`${vendeg.vendegAzon} ${d.getHours() - 1 < 10 ? "0" + (d.getHours() - 1) : d.getHours() - 1}:${d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes()}:${d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds()}`);
+            if (vendeg.vendegAzon == azon) {
+                if (vendeg.reszlegAzon == 2) {
+                    if (vendeg.belepett != 1) {
+                        be = new Date(2021, 10, 10, vendeg.ora, vendeg.perc, vendeg.masodperc).getTime();
+                    } else {
+                        ki = new Date(2021, 10, 10, vendeg.ora, vendeg.perc, vendeg.masodperc).getTime();
+                        osszIdo += ki - be;
+                    }
                 }
             } else {
+                if (osszIdo != 0) {
+                    const date = osszIdo.toString();
+                    const tmpIdo = new Date(parseInt(date, 10));
+                    fajlba.push(`${azon} ${tmpIdo.getHours() - 1 < 10 ? "0" + (tmpIdo.getHours() - 1) : tmpIdo.getHours() - 1}:${tmpIdo.getMinutes() < 10 ? "0" + tmpIdo.getMinutes() : tmpIdo.getMinutes()}:${tmpIdo.getSeconds() < 10 ? "0" + tmpIdo.getSeconds() : tmpIdo.getSeconds()}\n`);
+                    osszIdo = 0;
+                }
                 azon = vendeg.vendegAzon;
-            }
         }
-        fs.writeFileSync("szauna.txt", fajlba.join("\n"));
-        fs.writeFileSync("szaunaOH.txt", fajlba.join("\n"));
+
+        fs.writeFileSync("szauna.txt", fajlba.join(""));
         return "Sikeres fájlba írás";
     }
     public get reszlegHasznalat(): string {
