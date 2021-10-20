@@ -65,11 +65,12 @@ export default class Megoldas {
                     osszIdo = 0;
                 }
                 azon = vendeg.vendegAzon;
+            }
         }
-
         fs.writeFileSync("szauna.txt", fajlba.join(""));
         return "Sikeres fájlba írás";
     }
+
     public get reszlegHasznalat(): string {
         let uszoda = 0;
         let szauna = 0;
