@@ -13,27 +13,27 @@ describe("Vendég osztály unit tesztek", () => {
     // });
 
     it("Vendégazonosító ellenőrzése:", async () => {
-        expect(vendeg.VendegAzon).toBe(112);
+        expect(vendeg.vendegAzon).toBe(112);
     });
 
     it("Vendég részlegazonosító ellenőrzése:", async () => {
-        expect(vendeg.ReszlegAzonosito).toBe(0);
+        expect(vendeg.reszlegAzon).toBe(0);
     });
 
     it("Vendég óra ellenőrzése:", async () => {
-        expect(vendeg.Ora).toBe(6);
+        expect(vendeg.ora).toBe(6);
     });
 
     it("Vendég perc ellenőrzése:", async () => {
-        expect(vendeg.Perc).toBe(14);
+        expect(vendeg.perc).toBe(14);
     });
 
     it("Vendég másodperc ellenőrzése:", async () => {
-        expect(vendeg.Masodperc).toBe(56);
+        expect(vendeg.masodperc).toBe(56);
     });
 
     it("Vendég belépett ellenőrzése:", async () => {
-        expect(vendeg.Belepett).toBe(1);
+        expect(vendeg.belepett).toBe(1);
     });
 
     it("Vendég osszeFuzottOra ellenőrzése:", async () => {

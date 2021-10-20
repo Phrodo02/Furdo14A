@@ -21,18 +21,18 @@ export default class Megoldas {
         let max = 0;
         let maxAzon = 0;
         for (const vendeg of this.#vendegek) {
-            if (vendeg.ReszlegAzonosito == 0) {
-                if (vendeg.VendegAzon == azon) {
-                    if (vendeg.Belepett != 1) {
-                        ki = new Date(2021, 10, 10, vendeg.Ora, vendeg.Perc, vendeg.Masodperc).getTime();
+            if (vendeg.reszlegAzon == 0) {
+                if (vendeg.vendegAzon == azon) {
+                    if (vendeg.belepett != 1) {
+                        ki = new Date(2021, 10, 10, vendeg.ora, vendeg.perc, vendeg.masodperc).getTime();
                     }
                     if (ki != 0 && be != 0 && max < ki - be) {
                         max = ki - be;
-                        maxAzon = vendeg.VendegAzon;
+                        maxAzon = vendeg.vendegAzon;
                     }
                 } else {
-                    be = new Date(2021, 10, 10, vendeg.Ora, vendeg.Perc, vendeg.Masodperc).getTime();
-                    azon = vendeg.VendegAzon;
+                    be = new Date(2021, 10, 10, vendeg.ora, vendeg.perc, vendeg.masodperc).getTime();
+                    azon = vendeg.vendegAzon;
                 }
             }
         }
@@ -47,24 +47,24 @@ export default class Megoldas {
         let azon = 0;
         const fajlba = [];
         for (const vendeg of this.#vendegek) {
-            if (vendeg.ReszlegAzonosito == 2 && vendeg.VendegAzon == azon) {
-                if (vendeg.Belepett != 1) {
-                    be = new Date(2021, 10, 10, vendeg.Ora, vendeg.Perc, vendeg.Masodperc).getTime();
+            if (vendeg.reszlegAzon == 2 && vendeg.vendegAzon == azon) {
+                if (vendeg.belepett != 1) {
+                    be = new Date(2021, 10, 10, vendeg.ora, vendeg.perc, vendeg.masodperc).getTime();
                 } else {
-                    ki = new Date(2021, 10, 10, vendeg.Ora, vendeg.Perc, vendeg.Masodperc).getTime();
+                    ki = new Date(2021, 10, 10, vendeg.ora, vendeg.perc, vendeg.masodperc).getTime();
                     const date = (ki - be).toString();
                     const d = new Date(parseInt(date, 10));
-                    fajlba.push(`${vendeg.VendegAzon} ${d.getHours() - 1 < 10 ? "0" + (d.getHours() - 1) : d.getHours() - 1}:${d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes()}:${d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds()}`);
+                    fajlba.push(`${vendeg.vendegAzon} ${d.getHours() - 1 < 10 ? "0" + (d.getHours() - 1) : d.getHours() - 1}:${d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes()}:${d.getSeconds() < 10 ? "0" + d.getSeconds() : d.getSeconds()}`);
                 }
             } else {
-                azon = vendeg.VendegAzon;
+                azon = vendeg.vendegAzon;
             }
         }
         fs.writeFileSync("szauna.txt", fajlba.join("\n"));
         fs.writeFileSync("szaunaOH.txt", fajlba.join("\n"));
         return "Sikeres fájlba írás";
     }
-    public get reszlegHasználat(): string {
+    public get reszlegHasznalat(): string {
         let uszoda = 0;
         let szauna = 0;
         let gyogyviz = 0;
@@ -75,8 +75,8 @@ export default class Megoldas {
         let v3 = false;
         let v4 = false;
         for (const vendeg of this.#vendegek) {
-            if (vendeg.VendegAzon == azon) {
-                switch (vendeg.ReszlegAzonosito) {
+            if (vendeg.vendegAzon == azon) {
+                switch (vendeg.reszlegAzon) {
                     case 1:
                         if (!v1) uszoda++;
                         v1 = true;
@@ -97,7 +97,7 @@ export default class Megoldas {
                         break;
                 }
             } else {
-                azon = vendeg.VendegAzon;
+                azon = vendeg.vendegAzon;
                 v1 = false;
                 v2 = false;
                 v3 = false;
@@ -107,41 +107,41 @@ export default class Megoldas {
         return `Uszoda: ${uszoda}\nSzaunák: ${szauna}\nGyógyvizes medencék: ${gyogyviz}\nStrand: ${strand}`;
     }
 
-    public get vendegRészlegLista(): number {
+    public get vendegReszlegLista(): number {
         let tmpAzon = 0;
         let szamlalo = 0;
         let egyReszlegesVendeg = 0;
         for (const vendeg of this.#vendegek) {
-            if (tmpAzon == vendeg.VendegAzon) {
+            if (tmpAzon == vendeg.vendegAzon) {
                 szamlalo++;
             } else {
                 if (szamlalo == 4) {
                     szamlalo = 0;
                     egyReszlegesVendeg++;
                 } else szamlalo = 0;
-                tmpAzon = vendeg.VendegAzon;
+                tmpAzon = vendeg.vendegAzon;
                 szamlalo++;
             }
         }
         return egyReszlegesVendeg;
     }
 
-    public intervallumKözöttLátogatók(kezdes: number, vege: number): number {
+    public intervallumKozottLatogatok(kezdes: number, vege: number): number {
         let szamlalo = 0;
         const tmpVendegekAzon = [];
         for (const vendeg of this.#vendegek) {
-            if (vendeg.Ora >= kezdes && vendeg.Ora < vege && vendeg.ReszlegAzonosito == 0 && vendeg.Belepett == 1) {
-                tmpVendegekAzon.push(vendeg.VendegAzon);
+            if (vendeg.ora >= kezdes && vendeg.ora < vege && vendeg.reszlegAzon == 0 && vendeg.belepett == 1) {
+                tmpVendegekAzon.push(vendeg.vendegAzon);
                 szamlalo++;
             }
         }
         return szamlalo;
     }
 
-    public get ElsoKilepo(): string {
+    public get elsoKilepo(): string {
         let Min = 240001;
         for (const vendeg of this.#vendegek) {
-            if (vendeg.ReszlegAzonosito == 0 && vendeg.Belepett == 1) {
+            if (vendeg.reszlegAzon == 0 && vendeg.belepett == 1) {
                 if (vendeg.osszeFuzottOra < Min) {
                     Min = vendeg.osszeFuzottOra;
                 }
@@ -153,10 +153,10 @@ export default class Megoldas {
         return returnedTime;
     }
 
-    public get UtolsoKilepo(): string {
+    public get utolsoKilepo(): string {
         let Max = 0;
         for (const vendeg of this.#vendegek) {
-            if (vendeg.ReszlegAzonosito == 0 && vendeg.Belepett == 1) {
+            if (vendeg.reszlegAzon == 0 && vendeg.belepett == 1) {
                 if (vendeg.osszeFuzottOra > Max) {
                     Max = vendeg.osszeFuzottOra;
                 }

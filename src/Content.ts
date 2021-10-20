@@ -38,25 +38,25 @@ export default class Content {
         }
 
         res.write("2. feladat\n");
-        res.write(`Az első vendég ${megoldas.ElsoKilepo}-kor lépett ki az öltözőből.\n`);
-        res.write(`Az utolsó vendég ${megoldas.UtolsoKilepo}-kor lépett ki az öltözőből.\n`);
+        res.write(`Az első vendég ${megoldas.elsoKilepo}-kor lépett ki az öltözőből.\n`);
+        res.write(`Az utolsó vendég ${megoldas.utolsoKilepo}-kor lépett ki az öltözőből.\n`);
 
         res.write("\n3. feladat\n");
-        res.write(`A fürdőben ${megoldas.vendegRészlegLista} vendég járt csak egy részlegen.\n`);
+        res.write(`A fürdőben ${megoldas.vendegReszlegLista} vendég járt csak egy részlegen.\n`);
 
         res.write("\n4. feladat\n");
         res.write("A legtöbb időt eltöltő vendég:\n");
         res.write(`${megoldas.eltoltottIdo}\n`);
 
         res.write("\n5. feladat\n");
-        res.write(`6-9 óra között ${megoldas.intervallumKözöttLátogatók(6, 9)} vendég\n`);
-        res.write(`9-16 óra között ${megoldas.intervallumKözöttLátogatók(9, 16)} vendég\n`);
-        res.write(`16-20 óra között ${megoldas.intervallumKözöttLátogatók(16, 20)} vendég\n`);
+        res.write(`6-9 óra között ${megoldas.intervallumKozottLatogatok(6, 9)} vendég\n`);
+        res.write(`9-16 óra között ${megoldas.intervallumKozottLatogatok(9, 16)} vendég\n`);
+        res.write(`16-20 óra között ${megoldas.intervallumKozottLatogatok(16, 20)} vendég\n`);
 
         megoldas.szaunaEltoltottIdo;
 
         res.write("\n7. feladat\n");
-        res.write(megoldas.reszlegHasználat);
+        res.write(megoldas.reszlegHasznalat);
         // <---- Fejezd be a kódolást
 
         res.write("</pre></form></body></html>");
