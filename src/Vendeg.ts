@@ -1,3 +1,9 @@
+// Hiányzik a forrás és szauna.txt állomány megjelenítése (kértem)
+// Részleghasználat: tipikusan egy vektor és egy felsorolt típus használatával lett volna szép a megoldás
+// return "Sikeres fájlba írás"; Ez itt nem jelenthető ki, az írást try-catch blokkba kellett volna tenni és akkor jó lett volna
+// Teszt: "szauna.txt tartalmának ellenőrzése" hibát jelez
+// App.test.ts állományt törölni kellett volna (kértem)
+
 export default class Vendeg {
     #vendegAzonosito: number;
     #reszlegAzonosito: number;
