@@ -19,8 +19,20 @@ describe("Megoldas osztály unit tesztek", () => {
     });
 
     it("szauna.txt tartalmának ellenőrzése", () => {
-        expect(megoldas.szaunaEltoltottIdo).toBe("Sikeres fájlba írás");
+        megoldas.szaunaEltoltottIdo("szauna.txt");
         expect(fs.readFileSync("szauna.txt").toString()).toBe(fs.readFileSync("szaunaOH.txt").toString());
+    });
+
+    it("szaunaEltolottIdo hiba test", () => {
+        const consoleSpy = jest.spyOn(console, "log");
+        megoldas.szaunaEltoltottIdo("");
+        expect(consoleSpy).toHaveBeenCalledWith("ENOENT: no such file or directory, open");
+    });
+
+    it("fajlbeolvasas hiba test", () => {
+        const consoleSpy = jest.spyOn(console, "log");
+        megoldas.fajlBeolvasas("");
+        expect(consoleSpy).toHaveBeenCalledWith("ENOENT: no such file or directory, open");
     });
 
     it("Részlegek használatának számai test", () => {

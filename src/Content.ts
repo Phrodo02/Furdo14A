@@ -53,10 +53,16 @@ export default class Content {
         res.write(`9-16 óra között ${megoldas.intervallumKozottLatogatok(9, 16)} vendég\n`);
         res.write(`16-20 óra között ${megoldas.intervallumKozottLatogatok(16, 20)} vendég\n`);
 
-        megoldas.szaunaEltoltottIdo;
+        megoldas.szaunaEltoltottIdo("szauna.txt");
 
         res.write("\n7. feladat\n");
         res.write(megoldas.reszlegHasznalat);
+
+        res.write("\nForrás kiírás\n");
+        res.write(megoldas.fajlBeolvasas("furdoadat.txt"));
+
+        res.write("\nSzauna.txt kiírás\n");
+        res.write(megoldas.fajlBeolvasas("szauna.txt"));
         // <---- Fejezd be a kódolást
 
         res.write("</pre></form></body></html>");

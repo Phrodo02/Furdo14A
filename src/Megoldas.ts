@@ -14,6 +14,15 @@ export default class Megoldas {
             });
     }
 
+    public fajlBeolvasas(fajlnev: string): string {
+        try {
+            return fs.readFileSync(fajlnev).toString();
+        } catch (error) {
+            console.log((error as Error).message);
+            return "Hibás fájlbeolvasás";
+        }
+    }
+
     public get eltoltottIdo(): string {
         let ki = 0;
         let be = 0;
@@ -41,7 +50,7 @@ export default class Megoldas {
         return `${maxAzon}. vendég ${d.getHours() - 1}:${d.getMinutes()}:${d.getSeconds()}`;
     }
 
-    public get szaunaEltoltottIdo(): string {
+    public szaunaEltoltottIdo(fajlnev: string): void {
         let ki = 0;
         let be = 0;
         let azon = 0;
@@ -61,14 +70,17 @@ export default class Megoldas {
                 if (osszIdo != 0) {
                     const date = osszIdo.toString();
                     const tmpIdo = new Date(parseInt(date, 10));
-                    fajlba.push(`${azon} ${tmpIdo.getHours() - 1 < 10 ? "0" + (tmpIdo.getHours() - 1) : tmpIdo.getHours() - 1}:${tmpIdo.getMinutes() < 10 ? "0" + tmpIdo.getMinutes() : tmpIdo.getMinutes()}:${tmpIdo.getSeconds() < 10 ? "0" + tmpIdo.getSeconds() : tmpIdo.getSeconds()}\n`);
+                    fajlba.push(`${azon} ${tmpIdo.getHours() - 1 < 10 ? "0" + (tmpIdo.getHours() - 1) : tmpIdo.getHours() - 1}:${tmpIdo.getMinutes() < 10 ? "0" + tmpIdo.getMinutes() : tmpIdo.getMinutes()}:${tmpIdo.getSeconds() < 10 ? "0" + tmpIdo.getSeconds() : tmpIdo.getSeconds()}\r\n`);
                     osszIdo = 0;
                 }
                 azon = vendeg.vendegAzon;
             }
         }
-        fs.writeFileSync("szauna.txt", fajlba.join(""));
-        return "Sikeres fájlba írás";
+        try {
+            fs.writeFileSync(fajlnev, fajlba.join(""));
+        } catch (error) {
+            console.log((error as Error).message);
+        }
     }
 
     public get reszlegHasznalat(): string {
